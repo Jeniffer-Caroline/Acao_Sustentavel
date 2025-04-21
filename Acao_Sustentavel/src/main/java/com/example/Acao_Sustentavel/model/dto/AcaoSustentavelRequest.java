@@ -45,12 +45,12 @@ public class AcaoSustentavelRequest {
         this.descricao = descricao;
     }
 
-    public String getCategoria() {
-        return categoria;
+    public AcaoSustentavel.Categoria getCategoria() {
+        return AcaoSustentavel.Categoria.valueOf(categoria);
     }
 
-    public void setCategoria(String categoria) {
-        this.categoria = categoria;
+    public void setCategoria(AcaoSustentavel.Categoria categoria) {
+        this.categoria = String.valueOf(categoria);
     }
 
     public LocalDate getDataRealizacao() {

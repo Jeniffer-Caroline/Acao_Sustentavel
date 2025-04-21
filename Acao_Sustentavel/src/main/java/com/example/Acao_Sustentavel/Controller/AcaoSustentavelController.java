@@ -1,6 +1,7 @@
 package com.example.Acao_Sustentavel.Controller;
 
 
+import com.example.Acao_Sustentavel.Repository.AcaoSustentavelRepository;
 import com.example.Acao_Sustentavel.model.entity.AcaoSustentavel;
 import com.example.Acao_Sustentavel.model.dto.AcaoSustentavelRequest;
 import com.example.Acao_Sustentavel.model.dto.AcaoSustentavelResponse;
@@ -18,6 +19,8 @@ import java.util.stream.Collectors;
 public class AcaoSustentavelController {
     @Autowired
     private AcaoSustentavelService acaoSustentavelService;
+    @Autowired
+    private AcaoSustentavelRepository acaoSustentavelRepository;
 
     @PostMapping("/acao-sustentavel")
     public ResponseEntity<AcaoSustentavelResponse> criarAcaoSustentavel(@Valid @RequestBody AcaoSustentavelRequest request) {
@@ -61,5 +64,19 @@ public class AcaoSustentavelController {
     public ResponseEntity<Valid> remover (@PathVariable Long id){
         acaoSustentavelService.remover(id);
         return  ResponseEntity.noContent().build();
+    }
+    @GetMapping("/categoria")
+    public ResponseEntity<List<AcaoSustentavelResponse>> filtrarAcoesPorCategoria(@RequestParam("tipo") @Valid AcaoSustentavel.Categoria categoria){
+
+        if (categoria == null){
+            return ResponseEntity.badRequest().build();
+        }
+        List<AcaoSustentavel> acoes = acaoSustentavelRepository.findByCategoria(categoria);
+        List<AcaoSustentavelResponse> responses = acoes.stream()
+                .map(AcaoSustentavelResponse::new)
+                .collect(Collectors.toList());
+
+        return ResponseEntity.ok(responses);
+
     }
 }

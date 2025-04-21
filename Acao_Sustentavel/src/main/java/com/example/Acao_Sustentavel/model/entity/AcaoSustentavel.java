@@ -7,6 +7,16 @@ import java.time.LocalDate;
 @Entity
 @Table(name = "acao_sustentavel")
 public class AcaoSustentavel {
+    public enum Categoria {
+
+            DOACAO,
+            VOLUNTARIO,
+            EDUCACAO,
+            RECICLAGEM,
+            PLANTIO,
+            EDUCACAO_AMBIENTAL,
+            OUTROS
+        }
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 
@@ -76,11 +86,4 @@ public AcaoSustentavel(String titulo, String descricao, Categoria categoria, Loc
     public void setResponsavel(String responsavel) {
         this.responsavel = responsavel;
     }
-    public enum Categoria{
-        DOACAO,
-        RECICLAGEM,
-        PLANTIO,
-        EDUCACAO_AMBIENTAL,
-        OUTROS
     }
-}
