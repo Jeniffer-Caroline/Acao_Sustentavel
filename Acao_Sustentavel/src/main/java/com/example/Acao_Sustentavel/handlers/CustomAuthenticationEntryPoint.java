@@ -1,4 +1,17 @@
 package com.example.Acao_Sustentavel.handlers;
+import org.springframework.security.core.AuthenticationException;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import org.springframework.security.web.AuthenticationEntryPoint;
 
-public class CustomAuthenticationEntryPoint {
+import java.io.IOException;
+
+public class CustomAuthenticationEntryPoint implements AuthenticationEntryPoint {
+    @Override
+    public void commence(HttpServletRequest request, HttpServletResponse response, AuthenticationException authException) throws IOException{
+        response.setContentType("application/json");
+        response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+        response.getWriter().write("{\"error\":\"Não autenticado\",\"message\":\"Você precisa se autenticar para acessar essa API\"}");
+
+    }
 }

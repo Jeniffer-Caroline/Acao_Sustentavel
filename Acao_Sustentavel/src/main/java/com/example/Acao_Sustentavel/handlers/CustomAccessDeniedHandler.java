@@ -2,12 +2,13 @@ package com.example.Acao_Sustentavel.handlers;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.web.access.AccessDeniedHandler;
 
 import java.io.IOException;
-import java.nio.file.AccessDeniedException;
 
-public abstract class CustomAcessDeniedHandler implements AccessDeniedHandler {
+
+public class CustomAccessDeniedHandler implements AccessDeniedHandler {
     @Override
     public void handle(HttpServletRequest request, HttpServletResponse response, AccessDeniedException accessDeniedException) throws IOException{
         response.setContentType("application/json");
