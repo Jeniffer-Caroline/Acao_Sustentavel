@@ -1,5 +1,4 @@
 package com.example.Acao_Sustentavel.service;
-
 import com.example.Acao_Sustentavel.model.entity.AcaoSustentavel;
 import com.example.Acao_Sustentavel.model.dto.AcaoSustentavelRequest;
 import com.example.Acao_Sustentavel.Repository.AcaoSustentavelRepository;
@@ -55,5 +54,4 @@ public class AcaoSustentavelService {
     public void remover(Long id){
         acaoSustentavelRepository.deleteById(id);
     }
-
 }
